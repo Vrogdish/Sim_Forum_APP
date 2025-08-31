@@ -1,0 +1,22 @@
+<div class="login container container-small">
+  <h1>Connexion</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" class="form-control" formControlName="password" />
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+
+    <p class="text-alert" role="alert">
+      {{ errorMessage ? errorMessage : '' }}
+    </p>
+  </form>
+
+  <p class="forgot">Mot de passe oublié ? <a routerLink="/mot-de-passe-oublie">Réinitialiser</a></p>
+
+  <h3>Pas encore de compte ? <a routerLink="/auth/inscription">S'inscrire</a></h3>
+</div>

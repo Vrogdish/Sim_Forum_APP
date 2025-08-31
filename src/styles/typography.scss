@@ -1,0 +1,99 @@
+@use 'variables' as *;
+
+/* Base */
+html {
+  font-size: 16px; // 1rem = 16px
+}
+
+body {
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  font-weight: 400;
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+} // 36px
+h2 {
+  font-size: 1.875rem;
+} // 30px
+h3 {
+  font-size: 1.5rem;
+} // 24px
+h4 {
+  font-size: 1.25rem;
+} // 20px
+h5 {
+  font-size: 1.125rem;
+} // 18px
+h6 {
+  font-size: 1rem;
+} // 16px
+
+/* Paragraphes */
+p {
+  font-size: 1rem;
+}
+
+/* Text Utilities */
+.text-small {
+  font-size: 0.875rem;
+} // 14px
+.text-muted {
+  color: #6c757d;
+}
+.text-bold {
+  font-weight: 600;
+}
+
+/* Liens */
+a {
+  color: $link-color;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: $link-hover-color;
+}
+
+/* Listes */
+ul,
+ol {
+  margin: 0 0 1rem 1.25rem;
+}
+
+/* Boutons */
+button {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.text-alert {
+  color: $alert-color;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: rgb(0, 0, 0);
+    outline: none;
+  }
+  &.is-invalid {
+    border-color: $alert-color;
+    background-color: #ffe6e6; // optionnel, pour mettre un fond rouge clair
+    &:focus {
+      border-color: $alert-color;
+    }
+  }
+}
+
+.btn {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  width: 200px;
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $dark-background-color;
+  }
+  &-primary {
+    background-color: $primary-color;
+  }
+}

@@ -1,0 +1,15 @@
+@use '../../../styles/variables' as *;
+
+.footer {
+  background-color: $dark-background-color;
+  color: white;
+  padding: 1rem;
+  min-height: 300px;
+  * {
+    color: $light-text-color;
+  }
+
+  p {
+    margin: 0;
+  }
+}
