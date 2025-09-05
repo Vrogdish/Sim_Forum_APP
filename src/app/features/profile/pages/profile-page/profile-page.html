@@ -1,2 +1,18 @@
-<p>profile-page works!</p>
-<button (click)="logout()">Click me</button>
+@if (currentUser$ | async; as currentUser) {
+<div class="profile container container-small">
+  <h1>Bienvenue, {{ currentUser?.username }}!</h1>
+  <img src="assets/avatars/{{ currentUser?.avatarUrl }}" alt="avatar" class="avatar-large" />
+  <div class="profile-content">
+    <p>{{ currentUser?.email }}</p>
+    <p>Inscrit depuis le {{ currentUser?.createdAt | date : 'dd/MM/yyyy' }}</p>
+  </div>
+  <div class="profile-signature">
+    <h3>Ma signature</h3>
+    <form>
+      <textarea name="signature" id="signature"></textarea>
+    </form>
+  </div>
+  <button (click)="logout()" class="btn btn-primary">Se déconnecter</button>
+  <p class="text-alert">Supprimer mon compte</p>
+</div>
+}

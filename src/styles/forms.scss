@@ -28,6 +28,27 @@ input {
   }
 }
 
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+
+  &:focus {
+    border-color: rgb(0, 0, 0);
+    outline: none;
+  }
+  &.is-invalid {
+    border-color: $alert-color;
+    background-color: #ffe6e6; // optionnel, pour mettre un fond rouge clair
+    &:focus {
+      border-color: $alert-color;
+    }
+  }
+}
+
 .btn {
   color: white;
   border: none;

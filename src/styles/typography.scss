@@ -47,6 +47,11 @@ p {
   font-size: 1rem;
 }
 
+textarea {
+  line-height: 1.5;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
 /* Text Utilities */
 .text-small {
   font-size: 0.875rem;
@@ -66,12 +71,6 @@ a {
 }
 a:hover {
   color: $link-hover-color;
-}
-
-/* Listes */
-ul,
-ol {
-  margin: 0 0 1rem 1.25rem;
 }
 
 /* Boutons */

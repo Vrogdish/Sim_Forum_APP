@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../features/profile/models/user.model';
 @Component({
   selector: 'app-menu',
   imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule],
@@ -19,9 +20,11 @@ export class Menu {
   ];
   mobileMenuOpen = false;
   isLoggedIn$: Observable<boolean>;
+  currentUser$: Observable<User | null>;
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.currentUser$ = this.authService.currentUser$;
   }
 
   toggleMobileMenu() {

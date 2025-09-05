@@ -1,27 +1,21 @@
 <ul class="menu">
-  <li>
-    <p class="menu-item">
+  <li class="menu-item" >
       <mat-icon aria-hidden="false" aria-label="rechercher" fontIcon="search"></mat-icon>
-    </p>
-    <span class="underline"></span>
   </li>
   @for (item of menuItems; track $index) {
-  <li routerLink="/{{ item.path | lowercase }}" routerLinkActive="active">
-    <p class="menu-item">{{ item.name }}</p>
-
+  <li routerLink="/{{ item.path | lowercase }}" routerLinkActive="active" class="menu-item">
+    {{ item.name }}
     <span class="underline"></span>
   </li>
   } @if ( isLoggedIn$ | async ) {
   <li routerLink="/profile" routerLinkActive="active">
-    <p class="menu-item">
-      <mat-icon aria-hidden="false" aria-label="profil" fontIcon="account_circle"></mat-icon>
-    </p>
+    @if ( currentUser$ | async; as currentUser ) {
+    <img src="assets/avatars/{{ currentUser?.avatarUrl }}" alt="avatar" class="avatar" />
+    }
   </li>
   } @else {
   <li routerLink="/auth/connexion" routerLinkActive="active">
-    <p class="menu-item">
-      <mat-icon aria-hidden="false" aria-label="connexion" fontIcon="login"></mat-icon>
-    </p>
+    <mat-icon aria-hidden="false" aria-label="connexion" fontIcon="login"></mat-icon>
   </li>
   }
 </ul>
