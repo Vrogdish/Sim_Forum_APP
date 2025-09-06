@@ -5,16 +5,27 @@ import { TypedFormGroup } from '../../../../shared/utils/typed-form';
 import { LoginFormModel } from '../../models/login.model';
 import { createLoginForm } from '../../forms/login.form';
 import { AuthService } from '../../../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
 export class LoginPage {
   loginForm!: TypedFormGroup<LoginFormModel>;
-  errorMessage: string | null = null;
+  errorMessage: string = '';
+  private errorMessages: Record<string, Record<string, string>> = {
+    email: {
+      required: "L'adresse e-mail est obligatoire.",
+      email: "Le format de l'adresse e-mail est invalide.",
+    },
+    password: {
+      required: 'Le mot de passe est obligatoire.',
+      minlength: 'Le mot de passe doit contenir au moins 6 caractères.',
+    },
+  };
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -24,16 +35,37 @@ export class LoginPage {
     this.loginForm = createLoginForm(this.fb);
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const loginData = this.loginForm.getRawValue();
-      this.authService.login(loginData).subscribe((res) => {
-        if (res.data) {
-          this.router.navigate(['profile']);
-        } else {
-          this.errorMessage = 'Email ou mot de passe invalide ';
-        }
-      });
+  onSubmit($event: Event) {
+    $event.preventDefault();
+    if (!this.loginForm.valid) {
+      this.showFirstError();
+      return;
+    }
+    const { email, password } = this.loginForm.getRawValue();
+    this.authService.login({ email, password }).subscribe((res) => {
+      console.log(res);
+
+      if (res.error) {
+        this.errorMessage = res.error;
+
+        return;
+      }
+      if (res.data?.token) {
+        this.router.navigate(['/profile']);
+      }
+    });
+  }
+
+
+  private showFirstError() {
+    for (const field in this.errorMessages) {
+      const control = this.loginForm.get(field);
+      if (control && control.invalid) {
+        const errors = control.errors ?? {};
+        const firstErrorKey = Object.keys(errors)[0];
+        this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
+        return;
+      }
     }
   }
 }

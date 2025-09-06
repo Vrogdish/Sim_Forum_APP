@@ -3,6 +3,7 @@ import { HomePage } from './features/home/pages/home-page/home-page';
 import { forumRoutes } from './features/forum/forum.routes';
 import { authRoutes } from './features/auth/auth.routes';
 import { profileRoutes } from './features/profile/profile.routes';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {
     path: 'profile',
     children: profileRoutes,
+    canActivate: [authGuard],
   },
   {
     path: 'forum',

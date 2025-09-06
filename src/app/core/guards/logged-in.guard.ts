@@ -11,10 +11,10 @@ export const loggedInGuard: CanActivateFn = () => {
     take(1),
     map((isLoggedIn) => {
       if (isLoggedIn) {
-        router.navigate(['/profile']); // redirection si connecté
-        return false; // bloque l'accès
+        router.navigate(['/profile']);
+        return false;
       }
-      return true; // autorise l'accès si non connecté
+      return true;
     })
   );
 };

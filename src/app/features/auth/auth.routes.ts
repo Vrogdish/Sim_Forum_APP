@@ -13,9 +13,4 @@ export const authRoutes = [
     component: RegisterPage,
     canActivate: [loggedInGuard],
   },
-  //   {
-  //     path: 'profile',
-  //     component: ProfilePage,
-  //     canActivate: [loggedInGuard],
-  //   },
 ];

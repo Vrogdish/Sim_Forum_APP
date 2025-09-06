@@ -4,6 +4,7 @@ export interface User {
   email: string;
   role: string;
   avatarUrl: string;
+  signature: string;
   createdAt: string;
   updatedAt: string;
 }

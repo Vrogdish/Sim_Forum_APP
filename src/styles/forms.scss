@@ -65,4 +65,12 @@ textarea {
   &-primary {
     background-color: $primary-color;
   }
+  &-secondary {
+    background-color: $secondary-color;
+  }
+  &-disabled {
+    background-color: $disabled-color;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
