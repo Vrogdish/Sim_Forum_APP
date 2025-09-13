@@ -9,7 +9,18 @@ export interface User {
   updatedAt: string;
 }
 
-export interface UserUpdateFormModel {
-  avatarUrl: string;
+export interface SignatureToUpdateDto {
   signature: string;
+}
+
+export interface SignatureUpdateFormModel {
+  signature: string;
+}
+
+export interface AvatarToUpdateDto {
+  avatarUrl: string;
+}
+
+export interface AvatarUpdateFormModel {
+  avatarUrl: string;
 }

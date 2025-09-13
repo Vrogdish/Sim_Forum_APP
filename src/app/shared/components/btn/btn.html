@@ -1,0 +1,19 @@
+<button
+  (click)="handleClick()"
+  class="btn"
+  [ngClass]="{
+    'btn-primary': theme === 'primary',
+    'btn-secondary': theme === 'secondary',
+    'btn-danger': theme === 'danger',
+    'btn-cancel': theme === 'cancel',
+    'btn-loading': loading,
+    'btn-small': size === 'small',
+    'btn-medium': size === 'medium',
+    'btn-large': size === 'large',
+    'btn-disabled': disabled || loading
+  }"
+  [disabled]="disabled || loading"
+  [type]="type"
+>
+  {{ loading ? 'Chargement...' : text }}
+</button>

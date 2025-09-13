@@ -1,7 +1,28 @@
 @if (currentUser$ | async; as currentUser) {
-<div class="profile container container-small">
+<form [formGroup]="profileForm" class="profile container container-small" (ngSubmit)="onSubmit()">
   <div class="info">
-    <img src="assets/avatars/{{ currentUser?.avatarUrl }}" alt="avatar" class="avatar-large" />
+    <div class="avatar-container">
+      <img
+        [src]="
+          previewUrl ||
+          apiUploadUrl +
+            currentUser?.avatarUrl +
+            '?t=' +
+            (currentUser?.updatedAt | date : 'yyyyMMddHHmmss')
+        "
+        alt="avatar"
+        class="avatar"
+        (click)="fileInput.click()"
+      />
+      <input
+        #fileInput
+        type="file"
+        id="avatarInput"
+        (change)="onFileSelected($event)"
+        hidden
+        accept="image/png"
+      />
+    </div>
     <div>
       <h2>{{ currentUser?.username }}</h2>
       <p>{{ currentUser?.email }}</p>
@@ -10,10 +31,27 @@
   </div>
   <div class="profile-signature">
     <h3>Ma signature</h3>
-    <textarea name="signature" id="signature">{{ currentUser?.signature }}</textarea>
-    <button class="btn btn-secondary">Mettre à jour ma signature</button>
+    <textarea formControlName="signature" id="signature"> </textarea>
+    <div class="profile-btn">
+      <app-btn
+        theme="cancel"
+        (onClick)="resetForm()"
+        text="Annuler"
+        [disabled]="profileForm.pristine"
+      />
+      <app-btn
+        theme="primary"
+        (onClick)="onSubmit()"
+        text="Enregistrer"
+        [disabled]="profileForm.invalid || profileForm.pristine"
+      />
+    </div>
+
+    @if (errorMessage) {
+    <p class="text-alert">{{ errorMessage }}</p>
+    }
   </div>
-  <button (click)="logout()" class="btn btn-primary">Se déconnecter</button>
+  <app-btn theme="danger" (onClick)="logout()" text="Se déconnecter" />
   <p class="text-alert">Supprimer mon compte</p>
-</div>
+</form>
 }

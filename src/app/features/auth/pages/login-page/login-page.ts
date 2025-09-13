@@ -6,10 +6,11 @@ import { LoginFormModel } from '../../models/login.model';
 import { createLoginForm } from '../../forms/login.form';
 import { AuthService } from '../../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Btn } from "../../../../shared/components/btn/btn";
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, Btn],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
@@ -43,11 +44,8 @@ export class LoginPage {
     }
     const { email, password } = this.loginForm.getRawValue();
     this.authService.login({ email, password }).subscribe((res) => {
-      console.log(res);
-
       if (res.error) {
         this.errorMessage = res.error;
-
         return;
       }
       if (res.data?.token) {

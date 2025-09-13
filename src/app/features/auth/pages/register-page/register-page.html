@@ -43,7 +43,9 @@
         }"
       />
     </div>
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <div class="form-btn">
+      <app-btn type="submit" text="S'inscrire" theme="danger" />
+    </div>
     @if (errorMessage) {
     <div class="text-alert">* {{ errorMessage }}</div>
     }

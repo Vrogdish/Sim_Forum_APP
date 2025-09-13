@@ -1,6 +1,6 @@
 <ul class="menu">
-  <li class="menu-item" >
-      <mat-icon aria-hidden="false" aria-label="rechercher" fontIcon="search"></mat-icon>
+  <li class="menu-item">
+    <mat-icon aria-hidden="false" aria-label="rechercher" fontIcon="search"></mat-icon>
   </li>
   @for (item of menuItems; track $index) {
   <li routerLink="/{{ item.path | lowercase }}" routerLinkActive="active" class="menu-item">
@@ -10,7 +10,8 @@
   } @if ( isLoggedIn$ | async ) {
   <li routerLink="/profile" routerLinkActive="active">
     @if ( currentUser$ | async; as currentUser ) {
-    <img src="assets/avatars/{{ currentUser?.avatarUrl }}" alt="avatar" class="avatar" />
+
+    <app-avatar [user]="currentUser" [size]="'small'"></app-avatar>
     }
   </li>
   } @else {

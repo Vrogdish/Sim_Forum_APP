@@ -1,0 +1,14 @@
+.avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  &-medium {
+    width: 60px;
+    height: 60px;
+  }
+  &-large {
+    width: 150px;
+    height: 150px;
+  }
+}

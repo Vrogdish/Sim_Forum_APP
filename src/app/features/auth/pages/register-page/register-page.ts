@@ -8,10 +8,12 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { LoginDto, RegisterDto } from '../../../../core/models/auth.model';
 import { CommonModule } from '@angular/common';
 import { switchMap } from 'rxjs';
+import { showFirstError } from '../../../../helper/show-first-error';
+import { Btn } from '../../../../shared/components/btn/btn';
 
 @Component({
   selector: 'app-register-page',
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, Btn],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
 })
@@ -50,7 +52,7 @@ export class RegisterPage {
     this.isSubmitted = true;
 
     if (!this.registerForm.valid) {
-      this.showFirstError();
+      this.errorMessage = showFirstError(this.registerForm, this.errorMessages);
       return;
     }
 
@@ -88,15 +90,15 @@ export class RegisterPage {
       });
   }
 
-  private showFirstError() {
-    for (const field in this.errorMessages) {
-      const control = this.registerForm.get(field);
-      if (control && control.invalid) {
-        const errors = control.errors ?? {};
-        const firstErrorKey = Object.keys(errors)[0];
-        this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
-        return;
-      }
-    }
-  }
+  // private showFirstError() {
+  //   for (const field in this.errorMessages) {
+  //     const control = this.registerForm.get(field);
+  //     if (control && control.invalid) {
+  //       const errors = control.errors ?? {};
+  //       const firstErrorKey = Object.keys(errors)[0];
+  //       this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
+  //       return;
+  //     }
+  //   }
+  // }
 }

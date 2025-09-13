@@ -43,7 +43,7 @@ export class AuthService {
       if (res.token) {
         localStorage.setItem('token', res.token);
         this._isLoggedIn.next(true);
-        this._fetchCurrentUser().subscribe();
+        this.getme();
       }
     });
   }
@@ -60,5 +60,9 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  getme(): void {
+    this._fetchCurrentUser().subscribe();
   }
 }

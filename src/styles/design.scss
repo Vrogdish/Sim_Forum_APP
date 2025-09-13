@@ -3,19 +3,11 @@
   margin: 0 auto;
   padding: 1rem 2rem;
   &-small {
-    max-width: 600px;
+    max-width: 500px;
   }
 }
 
-.avatar {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  &-large {
-    width: 150px;
-    height: 150px;
-  }
-}
+
 
 @media (max-width: 900px) {
   .container {

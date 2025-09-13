@@ -12,17 +12,41 @@
     justify-content: center;
     gap: 3rem;
     p {
-      color: $info-text-color;
+      color: $text-info-color;
       margin-bottom: 0.1rem;
     }
   }
 
   &-signature {
     margin-top: 2rem;
+    margin-bottom: 4rem;
     width: 100%;
     textarea {
       width: 100%;
       min-height: 150px;
     }
+  }
+  &-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .signature-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
   }
 }
