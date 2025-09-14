@@ -1,5 +1,5 @@
-@if (currentUser$ | async; as currentUser) {
-<form [formGroup]="profileForm" class="profile container container-small" (ngSubmit)="onSubmit()">
+<div class="profile container container-small">
+  @if (currentUser$ | async; as currentUser) {
   <div class="info">
     <div class="avatar-container">
       <img
@@ -27,9 +27,16 @@
       <h2>{{ currentUser?.username }}</h2>
       <p>{{ currentUser?.email }}</p>
       <p>Inscrit depuis le {{ currentUser?.createdAt | date : 'dd/MM/yyyy' }}</p>
+      <app-btn
+        [size]="'small'"
+        text="modifier mon mot de passe"
+        theme="secondary"
+        (onClick)="toggleChangePassword()"
+      />
     </div>
   </div>
-  <div class="profile-signature">
+  }
+  <form [formGroup]="profileForm" class="profile-signature" (ngSubmit)="onSubmit()">
     <h3>Ma signature</h3>
     <textarea formControlName="signature" id="signature"> </textarea>
     <div class="profile-btn">
@@ -48,10 +55,15 @@
     </div>
 
     @if (errorMessage) {
-    <p class="text-alert">{{ errorMessage }}</p>
+    <p class="error-message">{{ errorMessage }}</p>
     }
-  </div>
+  </form>
   <app-btn theme="danger" (onClick)="logout()" text="Se déconnecter" />
-  <p class="text-alert">Supprimer mon compte</p>
-</form>
-}
+  <p class="text-alert" (click)="toggleDeleteAccount()">Supprimer mon compte</p>
+</div>
+
+@if(showChangePassword) {
+<app-change-password (close)="toggleChangePassword()" />}
+
+@if(showDeleteAccount) {
+<app-delete-account (close)="toggleDeleteAccount()" />}

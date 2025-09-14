@@ -1,6 +1,6 @@
 <div class="login container container-small">
   <h1>Connexion</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" id="email" class="form-control" formControlName="email" />
@@ -13,10 +13,14 @@
       <app-btn theme="primary" text="Se connecter" theme="danger" type="submit" />
     </div>
 
-    <p class="text-alert" role="alert">
+    <p class="error-message" role="alert">
       {{ errorMessage }}
     </p>
   </form>
-  <p class="forgot">Mot de passe oublié ? <a routerLink="/mot-de-passe-oublie">Réinitialiser</a></p>
+  <p class="forgot">Mot de passe oublié ? <span (click)="toggleForgot()">Réinitialiser</span></p>
   <h3>Pas encore de compte ? <a routerLink="/auth/inscription">S'inscrire</a></h3>
 </div>
+
+@if(showForgot){
+<app-forgot (close)="toggleForgot()"></app-forgot>
+}

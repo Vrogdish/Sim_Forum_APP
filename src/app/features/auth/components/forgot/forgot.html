@@ -1,0 +1,23 @@
+<div class="modal">
+  <div class="forgot">
+    <h2>Mot de passe oublié</h2>
+    <form [formGroup]="forgotForm" (ngSubmit)="onForgot()">
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input id="email" type="email" formControlName="email" />
+        @if(isSubmitted){
+        <p class="success-message">Un e-mail de réinitialisation a été envoyé.</p>
+        } @else {
+        <p class="error-message">{{ errorMessage }}</p>
+        }
+      </div>
+      <div class="form-btn">
+        <app-btn theme="cancel" text="Annuler" (click)="close.emit()"></app-btn>
+        @if(isSubmitted){
+        <app-btn theme="primary" text="Quitter" (click)="close.emit()"></app-btn>
+        }@else{
+        <app-btn theme="danger" text="Réinitialiser" type="submit"></app-btn>}
+      </div>
+    </form>
+  </div>
+</div>

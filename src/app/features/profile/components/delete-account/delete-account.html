@@ -1,0 +1,16 @@
+<div class="modal">
+  <div class="delete">
+    <h2>Supprimer mon compte</h2>
+    <p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
+    <p class="error-message">{{ errorMessage }}</p>
+    <div class="form-btn">
+      <app-btn text="Annuler" type="button" theme="cancel" (onClick)="onCancel()"></app-btn>
+      <app-btn
+        text="Supprimer"
+        type="button"
+        theme="danger"
+        (onClick)="onDeleteAccount()"
+      ></app-btn>
+    </div>
+  </div>
+</div>

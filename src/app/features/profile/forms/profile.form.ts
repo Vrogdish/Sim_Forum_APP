@@ -1,6 +1,6 @@
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { TypedFormGroup } from '../../../shared/utils/typed-form';
-import { SignatureUpdateFormModel } from '../models/user.model';
+import { PasswordToUpdateFormModel, SignatureUpdateFormModel } from '../models/user.model';
 
 export function createUserUpdateForm(
   fb: NonNullableFormBuilder
@@ -10,10 +10,26 @@ export function createUserUpdateForm(
   });
 }
 
-export function createUserAvatarForm(
+export function createUserPasswordForm(
   fb: NonNullableFormBuilder
-): TypedFormGroup<{ avatarUrl: string }> {
-  return fb.group({
-    avatarUrl: ['', [Validators.pattern(/^(?!.*[\\/])([a-zA-Z0-9_-]+)\.(png)$/i)]],
-  });
+): TypedFormGroup<PasswordToUpdateFormModel> {
+  return fb.group(
+    {
+      currentPassword: ['', [Validators.minLength(6), Validators.required]],
+      newPassword: ['', [Validators.minLength(6), Validators.required]],
+      confirmPassword: ['', [Validators.minLength(6), Validators.required]],
+    },
+    {
+      validators: [
+        (form) => {
+          const newPassword = form.get('newPassword')?.value;
+          const confirmPassword = form.get('confirmPassword')?.value;
+          if (newPassword !== confirmPassword) {
+            form.get('confirmPassword')?.setErrors({ mismatch: true });
+          }
+          return null;
+        },
+      ],
+    }
+  );
 }

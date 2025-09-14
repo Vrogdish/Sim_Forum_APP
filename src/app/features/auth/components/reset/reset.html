@@ -1,0 +1,17 @@
+<div class="reset container container-small">
+  <h2>Réinitialiser le mot de passe</h2>
+  <form [formGroup]="resetForm" (ngSubmit)="onReset()">
+    <div class="form-group">
+      <label for="password">Nouveau mot de passe</label>
+      <input id="password" type="password" formControlName="password" />
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" />
+    </div>
+    <p class="error-message">{{ errorMessage }}</p>
+    <div class="form-btn">
+      <app-btn theme="danger" text="Réinitialiser" type="submit"></app-btn>
+    </div>
+  </form>
+</div>

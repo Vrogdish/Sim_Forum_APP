@@ -11,10 +11,12 @@ import { ProfileService } from '../../services/profile.service';
 import { showFirstError } from '../../../../helper/show-first-error';
 import { environment } from '../../../../../environments/environment.development';
 import { Btn } from '../../../../shared/components/btn/btn';
+import { ChangePassword } from "../../components/change-password/change-password";
+import { DeleteAccount } from "../../components/delete-account/delete-account";
 
 @Component({
   selector: 'app-profile-page',
-  imports: [CommonModule, ReactiveFormsModule, Btn],
+  imports: [CommonModule, ReactiveFormsModule, Btn, ChangePassword, DeleteAccount],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })
@@ -24,6 +26,8 @@ export class ProfilePage implements OnInit {
   errorMessage: string = '';
   previewUrl: string | ArrayBuffer | null = null;
   apiUploadUrl = environment.apiUploadUrl;
+  showChangePassword: boolean = false;
+  showDeleteAccount: boolean = false;
 
   private errorMessages: Record<string, Record<string, string>> = {
     avatarUrl: {
@@ -118,5 +122,12 @@ export class ProfilePage implements OnInit {
         this.errorMessage = '';
       }
     });
+  }
+
+  toggleChangePassword() {
+    this.showChangePassword = !this.showChangePassword;
+  }
+  toggleDeleteAccount() {
+    this.showDeleteAccount = !this.showDeleteAccount;
   }
 }

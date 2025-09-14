@@ -24,3 +24,13 @@ export interface AvatarToUpdateDto {
 export interface AvatarUpdateFormModel {
   avatarUrl: string;
 }
+
+export interface PasswordToUpdateFormModel {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+export interface PasswordUpdateDto {
+  currentPassword: string;
+  newPassword: string;
+}

@@ -6,17 +6,20 @@ import { LoginFormModel } from '../../models/login.model';
 import { createLoginForm } from '../../forms/login.form';
 import { AuthService } from '../../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Btn } from "../../../../shared/components/btn/btn";
+import { Btn } from '../../../../shared/components/btn/btn';
+import { Forgot } from '../../components/forgot/forgot';
+import { showFirstError } from '../../../../helper/show-first-error';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, Btn],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, Btn, Forgot],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
 export class LoginPage {
   loginForm!: TypedFormGroup<LoginFormModel>;
   errorMessage: string = '';
+  showForgot: boolean = false;
   private errorMessages: Record<string, Record<string, string>> = {
     email: {
       required: "L'adresse e-mail est obligatoire.",
@@ -36,10 +39,9 @@ export class LoginPage {
     this.loginForm = createLoginForm(this.fb);
   }
 
-  onSubmit($event: Event) {
-    $event.preventDefault();
+  onSubmit() {
     if (!this.loginForm.valid) {
-      this.showFirstError();
+      this.errorMessage = showFirstError(this.loginForm, this.errorMessages);
       return;
     }
     const { email, password } = this.loginForm.getRawValue();
@@ -54,16 +56,19 @@ export class LoginPage {
     });
   }
 
-
-  private showFirstError() {
-    for (const field in this.errorMessages) {
-      const control = this.loginForm.get(field);
-      if (control && control.invalid) {
-        const errors = control.errors ?? {};
-        const firstErrorKey = Object.keys(errors)[0];
-        this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
-        return;
-      }
-    }
+  toggleForgot() {
+    this.showForgot = !this.showForgot;
   }
+
+  // private showFirstError() {
+  //   for (const field in this.errorMessages) {
+  //     const control = this.loginForm.get(field);
+  //     if (control && control.invalid) {
+  //       const errors = control.errors ?? {};
+  //       const firstErrorKey = Object.keys(errors)[0];
+  //       this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
+  //       return;
+  //     }
+  //   }
+  // }
 }

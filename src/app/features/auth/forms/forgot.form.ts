@@ -6,9 +6,27 @@ import {
   Validators,
 } from '@angular/forms';
 import { TypedFormGroup } from '../../../shared/utils/typed-form';
-import { RegisterFormModel } from '../models/register.model';
+import { ForgotFormModel, ResetFormModel } from '../models/forgot.model';
 
-const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+export function createForgotForm(fb: NonNullableFormBuilder): TypedFormGroup<ForgotFormModel> {
+  return fb.group({
+    email: fb.control('', [Validators.required, Validators.email]),
+  });
+}
+
+export function createResetForm(fb: NonNullableFormBuilder): TypedFormGroup<ResetFormModel> {
+  return fb.group(
+    {
+      password: fb.control('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: fb.control('', [Validators.required, Validators.minLength(6)]),
+    },
+    { validators: passwordMatchValidator }
+  );
+}
+
+const passwordMatchValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
 
@@ -26,15 +44,3 @@ const passwordMatchValidator: ValidatorFn = (control: AbstractControl): Validati
 
   return null;
 };
-
-export function createRegisterForm(fb: NonNullableFormBuilder): TypedFormGroup<RegisterFormModel> {
-  return fb.group(
-    {
-      username: fb.control('', [Validators.required, Validators.minLength(3)]),
-      email: fb.control('', [Validators.required, Validators.email]),
-      password: fb.control('', [Validators.required, Validators.minLength(6)]),
-      confirmPassword: fb.control('', [Validators.required, Validators.minLength(6)]),
-    },
-    { validators: passwordMatchValidator }
-  );
-}
