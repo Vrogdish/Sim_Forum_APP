@@ -8,7 +8,7 @@
     <span class="underline"></span>
   </li>
   } @if ( isLoggedIn$ | async ) {
-  <li routerLink="/profile" routerLinkActive="active">
+  <li routerLink="/profil" routerLinkActive="active">
     @if ( currentUser$ | async; as currentUser ) {
 
     <app-avatar [user]="currentUser" [size]="'small'"></app-avatar>

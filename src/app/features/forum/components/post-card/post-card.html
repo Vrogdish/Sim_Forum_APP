@@ -1,0 +1,14 @@
+<div class="post-card">
+  <div class="post-card-header">
+      <app-avatar [user]="post.user" size="medium"></app-avatar>
+      <p class="post-card-author">{{ post.user.username }}</p>
+
+  </div>
+  <div class="post-card-body">
+    <p class="post-card-content">{{ post.content }}</p>
+    <div class="post-card-signature">
+      <p>Signature : <br />{{ post.user.signature }}</p>
+      <p class="post-card-likes"><mat-icon>thumb_up</mat-icon> {{ post.likesCount }}</p>
+    </div>
+  </div>
+</div>

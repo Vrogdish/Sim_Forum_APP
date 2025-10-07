@@ -1,0 +1,35 @@
+@use '../../../../../styles/variables' as *;
+
+.category-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.category-title {
+  //background-color: $primary-color;
+  background: linear-gradient(45deg, $red-500, $red-600);
+
+  color: $text-light-color;
+  padding: 8px 16px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h2 {
+    letter-spacing: 0.25rem;
+  }
+}
+
+.category-content {
+  border: 1px solid #eee;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.thread-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #666;
+}

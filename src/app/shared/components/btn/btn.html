@@ -10,10 +10,17 @@
     'btn-small': size === 'small',
     'btn-medium': size === 'medium',
     'btn-large': size === 'large',
-    'btn-disabled': disabled || loading
+    'btn-disabled': disabled
   }"
   [disabled]="disabled || loading"
   [type]="type"
 >
-  {{ loading ? 'Chargement...' : text }}
+  @if(loading){
+  <div class="btn-spinner">
+    <app-spinner [size]="'small'" [color]="'white'"></app-spinner>
+  </div>
+  {{ text }}
+  } @else {
+  <ng-content>{{ text }}</ng-content>
+  }
 </button>

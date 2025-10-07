@@ -14,19 +14,21 @@ export const routes: Routes = [
   {
     path: 'accueil',
     component: HomePage,
+    data: { breadcrumb: 'Accueil' },
   },
   {
     path: 'auth',
     children: authRoutes,
   },
   {
-    path: 'profile',
+    path: 'profil',
     children: profileRoutes,
     canActivate: [authGuard],
   },
   {
     path: 'forum',
     children: forumRoutes,
+    data: { breadcrumb: 'Forum' },
   },
   {
     path: '**',

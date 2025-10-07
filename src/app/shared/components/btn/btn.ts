@@ -1,10 +1,11 @@
 import { O } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Spinner } from "../spinner/spinner";
 
 @Component({
   selector: 'app-btn',
-  imports: [CommonModule],
+  imports: [CommonModule, Spinner],
   templateUrl: './btn.html',
   styleUrl: './btn.scss',
 })

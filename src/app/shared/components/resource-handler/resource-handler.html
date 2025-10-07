@@ -1,0 +1,11 @@
+@if (state) { @if (state.loading) {
+<p>Loading...</p>
+} @else if (state.error) {
+<p class="error">{{ state.error }}</p>
+} @else if (!state.data || state.data.length === 0) {
+<p>No data available.</p>
+} @else {
+<ng-container *ngTemplateOutlet="dataTpl; context: { $implicit: state.data }"></ng-container>
+} } @else {
+<p>Loading...</p>
+}

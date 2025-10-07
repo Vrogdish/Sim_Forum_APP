@@ -1,2 +1,13 @@
-<div class="banner"></div>
+<app-banner></app-banner>
 <p>home-page works!</p>
+<div class="test" style="display: flex; gap: 1rem; flex-direction: column">
+  <app-spinner [size]="'medium'" [color]="'red'"></app-spinner>
+  <app-spinner [size]="'large'" [color]="'red'"></app-spinner>
+  <app-btn [loading]="true"></app-btn>
+  <app-btn
+    [loading]="true"
+    [text]="'Ceci est un texte long pour un bouton'"
+    theme="danger"
+  ></app-btn>
+  <app-btn></app-btn>
+</div>

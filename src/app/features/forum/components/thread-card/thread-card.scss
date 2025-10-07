@@ -1,0 +1,58 @@
+@use '../../../../../styles/variables' as *;
+
+.thread-card {
+  border-bottom: 1px solid $text-info-color;
+  border-radius: 8px 8px 0 0;
+  padding: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $background-hover-color;
+  }
+
+  h2 {
+    margin: 0 0 4px 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .thread-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .thread-counts {
+      font-size: 0.9em;
+      color: $text-info-color;
+    }
+  }
+
+  .thread-content {
+    font-size: 1em;
+    margin-bottom: 12px;
+  }
+
+  .thread-info {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.9em;
+    color: $text-info-color;
+    margin-bottom: 2px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+
+    .tag {
+      background-color: $btn-disabled-color;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.85em;
+      color: $text-light-color;
+    }
+  }
+}

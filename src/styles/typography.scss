@@ -13,25 +13,27 @@ body {
 }
 
 /* Headings */
-h1,
+h1 {
+  font-weight: 600;
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-weight: 500;
 }
 
 h1 {
-  font-size: 2.25rem;
-} // 36px
+  font-size: 20px;
+}
 h2 {
-  font-size: 1.875rem;
-} // 30px
+  font-size: 18px;
+}
 h3 {
-  font-size: 1.5rem;
-} // 24px
+  font-size: 16px;
+}
 h4 {
   font-size: 1.25rem;
 } // 20px
@@ -82,7 +84,6 @@ button {
   color: $text-alert-color;
   font-weight: 500;
 }
-
 
 @media (max-width: 900px) {
   h1 {

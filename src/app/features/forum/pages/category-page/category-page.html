@@ -1,0 +1,20 @@
+<app-banner></app-banner>
+
+<app-resource-handler
+  [state]="threadsState$ | async"
+  [dataTpl]="threadTemplate"
+></app-resource-handler>
+
+<ng-template #threadTemplate let-threads>
+  <div class="category-page">
+    <H1 class="category-title">{{ threads[0].categoryName }}</H1>
+    <div class="thread-list">
+      @for (thread of threads; track thread.id) {
+      <app-thread-card
+        [thread]="thread"
+        [routerLink]="['/forum', thread.categorySlug, thread.id]"
+      ></app-thread-card>
+      }
+    </div>
+  </div></ng-template
+>

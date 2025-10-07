@@ -30,7 +30,7 @@
       <app-btn
         [size]="'small'"
         text="modifier mon mot de passe"
-        theme="secondary"
+        theme="primary"
         (onClick)="toggleChangePassword()"
       />
     </div>
@@ -51,6 +51,7 @@
         (onClick)="onSubmit()"
         text="Enregistrer"
         [disabled]="profileForm.invalid || profileForm.pristine"
+        [loading]="isLoading"
       />
     </div>
 
@@ -63,7 +64,5 @@
 </div>
 
 @if(showChangePassword) {
-<app-change-password (close)="toggleChangePassword()" />}
-
-@if(showDeleteAccount) {
+<app-change-password (close)="toggleChangePassword()" />} @if(showDeleteAccount) {
 <app-delete-account (close)="toggleDeleteAccount()" />}

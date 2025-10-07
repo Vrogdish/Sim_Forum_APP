@@ -1,0 +1,16 @@
+<div class="categoriy-card">
+  <div class="category-title" routerLink="/forum/{{ category.slug }}">
+    <h2>{{ category.name }}</h2>
+    <p>{{ category.totalThreads }} {{ category.totalThreads > 1 ? 'sujets' : 'sujet' }}</p>
+  </div>
+
+  @for (thread of category.threads; track thread.id) {
+  <div class="category-content" routerLink="/forum/{{ category.slug }}/{{ thread.id }}">
+    <h3 class="thread-title">{{ thread.title }}</h3>
+    <div class="thread-meta">
+      <p>{{ thread.user.username }} le {{ thread.createdAt | date : 'dd/MM/yyyy' }}</p>
+      <p>{{ thread.totalPosts > 1 ? 'réponses' : 'réponse' }} : {{ thread.totalPosts }}</p>
+    </div>
+  </div>
+  }
+</div>

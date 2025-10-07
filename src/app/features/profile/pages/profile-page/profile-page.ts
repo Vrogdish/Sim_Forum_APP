@@ -11,8 +11,8 @@ import { ProfileService } from '../../services/profile.service';
 import { showFirstError } from '../../../../helper/show-first-error';
 import { environment } from '../../../../../environments/environment.development';
 import { Btn } from '../../../../shared/components/btn/btn';
-import { ChangePassword } from "../../components/change-password/change-password";
-import { DeleteAccount } from "../../components/delete-account/delete-account";
+import { ChangePassword } from '../../components/change-password/change-password';
+import { DeleteAccount } from '../../components/delete-account/delete-account';
 
 @Component({
   selector: 'app-profile-page',
@@ -28,6 +28,7 @@ export class ProfilePage implements OnInit {
   apiUploadUrl = environment.apiUploadUrl;
   showChangePassword: boolean = false;
   showDeleteAccount: boolean = false;
+  isLoading: boolean = false;
 
   private errorMessages: Record<string, Record<string, string>> = {
     avatarUrl: {
@@ -94,22 +95,23 @@ export class ProfilePage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.profileForm);
-
     if (!this.profileForm.valid) {
       this.errorMessage = showFirstError(this.profileForm, this.errorMessages);
       return;
     }
-
+    this.isLoading = true;
     const { signature } = this.profileForm.getRawValue();
     this.profileService.updateSignature({ signature }).subscribe((res) => {
       if (res.error) {
         this.errorMessage = res.error;
+        this.isLoading = false;
         return;
       }
       if (res.data) {
         this.authService.getme();
         this.errorMessage = '';
+        this.isLoading = false;
+        this.profileForm.markAsPristine();
       }
     });
   }

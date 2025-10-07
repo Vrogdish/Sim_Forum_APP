@@ -1,0 +1,11 @@
+@use '../../../../../styles/variables' as *;
+
+.category-title {
+  margin-bottom: 20px;
+  color: $text-light-color;
+  background-color: $primary-color;
+  padding: 10px 20px;
+  border-radius: 8px;
+  letter-spacing: 6px;
+  font-weight: 500;
+}

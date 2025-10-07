@@ -21,6 +21,7 @@ export class RegisterPage {
   registerForm!: TypedFormGroup<RegisterFormModel>;
   errorMessage: string = '';
   isSubmitted = false;
+  isLoading: boolean = false;
   private errorMessages: Record<string, Record<string, string>> = {
     username: {
       required: "Le nom d'utilisateur est obligatoire.",
@@ -50,9 +51,11 @@ export class RegisterPage {
 
   onSubmit() {
     this.isSubmitted = true;
+    this.isLoading = true;
 
     if (!this.registerForm.valid) {
       this.errorMessage = showFirstError(this.registerForm, this.errorMessages);
+      this.isLoading = false;
       return;
     }
 
@@ -72,33 +75,13 @@ export class RegisterPage {
           }
         })
       )
-      .subscribe({
-        next: () => this.router.navigate(['/profile']),
-        error: (err) => {
-          if (err.error === 'email already exists') {
-            this.errorMessage = "L'adresse e-mail est déjà utilisée.";
-            this.registerForm.get('email')?.setErrors({ emailExists: true });
-          } else if (err.error === 'username already exists') {
-            this.errorMessage = "Le nom d'utilisateur est déjà utilisé.";
-            this.registerForm.get('username')?.setErrors({ usernameExists: true });
-          } else {
-            this.errorMessage =
-              'Impossible de se connecter automatiquement. Veuillez vous connecter manuellement.';
-          }
-          console.error(err);
-        },
+      .subscribe((res) => {
+        if (res.error) {
+          this.errorMessage = res.error || 'Une erreur est survenue.';
+          this.isLoading = false;
+        } else {
+          this.router.navigate(['/profil']);
+        }
       });
   }
-
-  // private showFirstError() {
-  //   for (const field in this.errorMessages) {
-  //     const control = this.registerForm.get(field);
-  //     if (control && control.invalid) {
-  //       const errors = control.errors ?? {};
-  //       const firstErrorKey = Object.keys(errors)[0];
-  //       this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
-  //       return;
-  //     }
-  //   }
-  // }
 }

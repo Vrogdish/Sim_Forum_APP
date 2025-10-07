@@ -1,0 +1,19 @@
+<div class="thread-card">
+  <div class="thread-title">
+    <h2>{{ thread.title }}</h2>
+    <span class="thread-counts"
+      >{{ thread.totalPosts - 1 }} {{ thread.totalPosts > 1 ? 'réponses' : 'réponse' }}</span
+    >
+  </div>
+  <p class="thread-content">{{ thread.content }}</p>
+
+  <div class="tags">
+    @for(tag of thread.tagNames; track tag) {
+    <span class="tag">{{ tag }}</span>
+    }
+  </div>
+  <div class="thread-info">
+    <p>Crée par {{ thread.user.username }}</p>
+    <p>&nbsp;le {{ thread.createdAt | date : 'dd/MM/yyyy' }}</p>
+  </div>
+</div>

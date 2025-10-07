@@ -20,6 +20,7 @@ export class LoginPage {
   loginForm!: TypedFormGroup<LoginFormModel>;
   errorMessage: string = '';
   showForgot: boolean = false;
+  isLoading: boolean = false;
   private errorMessages: Record<string, Record<string, string>> = {
     email: {
       required: "L'adresse e-mail est obligatoire.",
@@ -40,6 +41,8 @@ export class LoginPage {
   }
 
   onSubmit() {
+    this.isLoading = true;
+    this.errorMessage = '';
     if (!this.loginForm.valid) {
       this.errorMessage = showFirstError(this.loginForm, this.errorMessages);
       return;
@@ -48,10 +51,11 @@ export class LoginPage {
     this.authService.login({ email, password }).subscribe((res) => {
       if (res.error) {
         this.errorMessage = res.error;
+        this.isLoading = false;
         return;
       }
       if (res.data?.token) {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profil']);
       }
     });
   }
@@ -59,16 +63,4 @@ export class LoginPage {
   toggleForgot() {
     this.showForgot = !this.showForgot;
   }
-
-  // private showFirstError() {
-  //   for (const field in this.errorMessages) {
-  //     const control = this.loginForm.get(field);
-  //     if (control && control.invalid) {
-  //       const errors = control.errors ?? {};
-  //       const firstErrorKey = Object.keys(errors)[0];
-  //       this.errorMessage = this.errorMessages[field][firstErrorKey] || 'Champ invalide.';
-  //       return;
-  //     }
-  //   }
-  // }
 }

@@ -1,39 +1,27 @@
-// $primary-color: #dc3545;
-// $secondary-color: #1d3557;
-
-// $background-color: #f5f5f5;
-// $background-dark-color: #212529;
-
-// $text-color: #2c2c2c;
-// $text-light-color: #f8f9fa;
-// $text-info-color: #6c757d;
-// $text-alert-color: #dc3545;
-
-// $link-color: #2563eb;
-// $link-hover-color: #2a435d;
-
-// $btn-primary-color: #007bff;
-// $btn-secondary-color: #6c757d;
-// $btn-danger-color: #dc3545;
-// $btn-cancel-color: #f1f1f1;
-// $btn-disabled-color: #adb5bd;
-// $btn-hover-color: #212529;
+// 🎨 Tailwind colors
+$red-700: #b00000;
+$red-600: #dc2626;
+$red-500: #ef4444;
+$red-400: #f87171;
+$red-300: #fca5a5;
 
 // 🎨 Palette principale
-$primary-color: #dc3545; // rouge vif (accent / alertes / danger)
+$primary-color: $red-500; // rouge vif (accent / alertes / danger)
 $secondary-color: #1d3557; // bleu nuit (dominante)
 $accent-color: #457b9d; // bleu moyen (hover, surlignage)
 
 // 🎨 Neutres & fonds
 $background-color: #f8f9fa; // fond clair
 $background-dark-color: #212529; // fond sombre / footer
+$background-hover-color: #e9ecef; // fond au survol
 $surface-color: #ffffff; // surface cartes / blocs
+$border-color: #dee2e6; // bordure des cartes / blocs
 
 // 🎨 Texte
 $text-color: #2c2c2c; // texte principal
 $text-light-color: #f8f9fa; // texte clair sur fond sombre
 $text-info-color: #6c757d; // infos secondaires
-$text-alert-color: #e63946; // messages d’erreur
+$text-alert-color: $red-500; // messages d’erreur
 $text-success-color: #2a9d8f; // messages de succès
 
 // 🎨 Liens
@@ -43,7 +31,7 @@ $link-hover-color: #457b9d; // bleu moyen (hover)
 // 🎨 Boutons
 $btn-primary-color: #1d3557; // bouton principal (bleu profond)
 $btn-secondary-color: #6c757d; // bouton secondaire (gris neutre)
-$btn-danger-color: #dc3545; // bouton danger
+$btn-danger-color: $red-500; // bouton danger
 $btn-cancel-color: #e9ecef; // bouton annuler
 $btn-disabled-color: #adb5bd; // bouton désactivé
 $btn-hover-color: #457b9d; // hover sur bouton principal

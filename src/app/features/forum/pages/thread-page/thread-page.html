@@ -1,0 +1,18 @@
+<app-banner></app-banner>
+
+<app-resource-handler [state]="PostState$ | async" [dataTpl]="PostTemplate"></app-resource-handler>
+
+<ng-template #PostTemplate let-posts>
+  <div class="thread-page">
+    <H1 class="thread-title">{{ posts[0].threadTitle }}</H1>
+    <div class="post-list">
+      @for (post of posts; track post.id) {
+    <div class="post-card-date">
+      <p>le {{ post.createdAt | date : 'dd/MM/yyyy' }}</p>
+      <p>{{ post.createdAt | date : 'HH:mm' }}</p>
+    </div>
+      <app-post-card [post]="post"></app-post-card>
+      }
+    </div>
+  </div></ng-template
+>

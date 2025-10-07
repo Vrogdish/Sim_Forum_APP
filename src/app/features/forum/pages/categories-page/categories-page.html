@@ -1,0 +1,17 @@
+<app-banner></app-banner>
+
+<app-resource-handler
+  [state]="categoryState$ | async"
+  [dataTpl]="categoryTemplate"
+></app-resource-handler>
+
+<ng-template #categoryTemplate let-categories>
+  <div class="category-page">
+    <div class="forum-menu"></div>
+    <div class="category-list">
+      @for (category of categories; track category.id) {
+      <app-category-card [category]="category"> </app-category-card>
+      }
+    </div>
+  </div>
+</ng-template>

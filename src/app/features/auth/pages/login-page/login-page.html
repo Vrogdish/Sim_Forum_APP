@@ -10,7 +10,13 @@
       <input type="password" id="password" class="form-control" formControlName="password" />
     </div>
     <div class="form-btn">
-      <app-btn theme="primary" text="Se connecter" theme="danger" type="submit" />
+      <app-btn
+        theme="primary"
+        text="Se connecter"
+        theme="danger"
+        type="submit"
+        [loading]="isLoading"
+      />
     </div>
 
     <p class="error-message" role="alert">
