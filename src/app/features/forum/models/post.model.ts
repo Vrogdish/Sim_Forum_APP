@@ -8,4 +8,7 @@ export interface PostDto {
   createdAt: string;
   updatedAt: string;
   likesCount: number;
+  threadTitle: string;
+  categoryName: string;
+  categorySlug: string;
 }

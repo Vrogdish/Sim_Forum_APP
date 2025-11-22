@@ -1,20 +1,28 @@
 @use '../../../../../styles/variables' as *;
 
+.post-card-date {
+  margin: 20px 4px 10px 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
 .post-card {
-  border: 1px solid $border-color;
+  //border: 1px solid $border-color;
   border-radius: 8px;
   margin-bottom: 16px;
   background-color: $surface-color;
   display: flex;
   overflow: hidden;
+
   &-header {
     width: 200px;
-    background-color: $primary-color;
-    color: $text-light-color;
-    padding: 8px 16px;
+    // background-color: $primary-color;
+    // color: $text-light-color;
+    border-right: 1px solid $border-color;
+    padding: 16px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
   }
 

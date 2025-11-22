@@ -1,0 +1,18 @@
+<nav >
+  <ul class="forum-nav">
+    @for (item of navItems; track item.label) {
+    <li >
+      <a class="nav-item" [routerLink]="item.link">{{ item.label }}</a>
+        @if (item.subcategories) {
+            <ul>
+            @for (subitem of item.subcategories; track subitem.label) {
+                <li>
+                <a class="nav-item-sub" [routerLink]="subitem.link">{{ subitem.label }}</a>
+                </li>
+            }
+            </ul>
+        }
+    </li>
+    }
+  </ul>
+</nav>

@@ -3,23 +3,29 @@ import { CategoryService } from '../../services/category.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ResourceState } from '../../../../core/models/resource-state.model';
-import { ResourceHandler } from "../../../../shared/components/resource-handler/resource-handler";
-import { CategoryCard } from "../../components/category-card/category-card";
+import { ResourceHandler } from '../../../../shared/components/resource-handler/resource-handler';
+import { CategoryCard } from '../../components/category-card/category-card';
 import { CategoryWithThreadsDto } from '../../models/category.model';
-import { Banner } from "../../../../shared/components/banner/banner";
+import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-categories-page',
-  imports: [CommonModule, ResourceHandler, CategoryCard, Banner],
+  imports: [CommonModule, ResourceHandler, CategoryCard],
   templateUrl: './categories-page.html',
   styleUrl: './categories-page.scss',
 })
 export class CategoriesPage implements OnInit {
   categoryState$!: Observable<ResourceState<CategoryWithThreadsDto[]>>;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private breadcrumbService: BreadcrumbService
+  ) {}
 
   ngOnInit() {
     this.categoryState$ = this.categoryService.getCategoriesWithThreads();
+    this.breadcrumbService.setBreadcrumbs([
+      { label: 'Categories', url: '/forum' },
+    ]);
   }
 }

@@ -1,0 +1,15 @@
+@if (breadcrumbs$ | async; as breadcrumbs) {
+<ol class="breadcrumb">
+  @for (breadcrumb of breadcrumbs; track breadcrumb.url) {
+  <li class="breadcrumb-item">
+    <mat-icon >chevron_right</mat-icon>
+    <a [routerLink]="breadcrumb.url">
+      @if (breadcrumb.icon) {
+      <i class="{{ breadcrumb.icon }}"></i>
+      }
+      {{ breadcrumb.label }}
+    </a>
+  </li>
+  }
+</ol>
+}

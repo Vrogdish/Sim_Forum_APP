@@ -1,9 +1,13 @@
+<div class="post-card-date">
+  <app-avatar [user]="post.user" size="medium"></app-avatar>
+  <p>{{ post.user.username }}</p>
+  <!-- <p>Le {{ post.createdAt | date : 'dd/MM/yyyy' }}</p>
+  <p>{{ post.createdAt | date : 'HH:mm' }}</p> -->
+</div>
 <div class="post-card">
-  <div class="post-card-header">
-      <app-avatar [user]="post.user" size="medium"></app-avatar>
-      <p class="post-card-author">{{ post.user.username }}</p>
-
-  </div>
+  <!-- <div class="post-card-header">
+    <p class="post-card-author">{{ post.user.username }}</p>
+  </div> -->
   <div class="post-card-body">
     <p class="post-card-content">{{ post.content }}</p>
     <div class="post-card-signature">
