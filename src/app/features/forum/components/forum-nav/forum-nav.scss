@@ -11,6 +11,10 @@
   padding: 10px;
 }
 
+.active {
+  font-weight: bold;
+}
+
 .nav-item {
   color: $text-color;
   text-decoration: underline;

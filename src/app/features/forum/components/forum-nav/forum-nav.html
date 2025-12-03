@@ -7,7 +7,7 @@
             <ul>
             @for (subitem of item.subcategories; track subitem.label) {
                 <li>
-                <a class="nav-item-sub" [routerLink]="subitem.link">{{ subitem.label }}</a>
+                <a class="nav-item-sub" [routerLink]="subitem.link" routerLinkActive="active">{{ subitem.label }}</a>
                 </li>
             }
             </ul>
